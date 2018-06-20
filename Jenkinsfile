@@ -18,6 +18,7 @@ node{
       
       sshagent(['tomcat-dev']) {
          sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@172.31.24.211:/opt/tomcat8/webapps/'
+         echo 'deploy to tomcat success'
       }
        echo 'deploy to tomcat success'
    }
