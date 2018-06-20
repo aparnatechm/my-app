@@ -9,8 +9,17 @@ node{
       echo 'rename war file'
       sh 'mv target/myweb*.war target/myweb.war'
       echo 'rename war file success'
+      //kartik
      // def mvnHome =  tool name: 'maven-3', type: 'maven'   
+     // kartik
      // sh "${mvnHome}/bin/mvn package"
+   }
+    stage('Deploy to Tomcat'){
+      
+      sshagent(['tomcat-dev']) {
+         sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@172.31.24.211:/opt/tomcat8/webapps/'
+      }
+       echo 'deploy to tomcat success'
    }
    stage('Email Notification'){
       mail bcc: '', body: '''Hi Welcome to jenkins email alerts
